@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.c4m-lookup {
+  --yellow-200: '255,240,203';
+  --yellow-300: '254,216,98';
+  --yellow-400: '234,185,64';
+  --blue-100: '222,235,249';
+  --blue-400: '154,195,229';
+  --blue-700: '45,115,181';
+ 
+}
+.card-gradient {
+	
+}

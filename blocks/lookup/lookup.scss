@@ -1,0 +1,45 @@
+.c4m-lookup, .card-gradient {
+  background: white;
+  border: 2px solid;
+  border-radius: .75rem;
+  aspect-ratio: 3/2;
+   background: rgba(154,195,229,1);
+   position: relative;
+   &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%; 
+    background-image: 
+      linear-gradient(
+      to top right, 
+      rgba(254,216,98,1) 0%,
+      rgba(254,216,98,.5) 20%,
+      rgba(154,195,229,.5) 60%),
+    linear-gradient(
+      to top left,
+      rgba(45,115,181,1) 0%,
+      rgba(45,115,181,.5) 50%, 
+      rgba(154,195,229,.5) 60%); 
+    z-index: 0;
+    border-radius: .75rem;
+    overflow: hidden;;
+  }
+}
+
+.card-gradient {
+  z-index: 1;
+ 
+  > * {
+    position: relative;
+  }
+  
+  
+}
+
+.c4m-lookup .county-bg {
+  opacity: .5;
+  object-fit: cover;
+}

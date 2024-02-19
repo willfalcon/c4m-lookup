@@ -1,0 +1,26 @@
+{
+  "name": "c4m-lookup/lookup",
+  "title": "Lookup",
+  "style": "lookup-style",
+  "editorStyle": "lookup-editor-style",
+  "viewScript": "lookup-script",
+  "category": "cdhq",
+  "acf": {
+    "mode": "auto",
+    "renderTemplate": "lookup.php"
+  },
+  "supports": {
+    "align": true
+  },
+  "align": "full",
+  "icon": "image-filter",
+  "example": {
+    "attributes": {
+      "mode": "preview",
+      "data": {
+        "field_6455574cc315b": "14873",
+        "field_6500ad677de5a": "lookup"
+      }
+    }
+  }
+}
