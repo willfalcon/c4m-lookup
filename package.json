@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "images": "imagemin blocks/lookup/images/* --out-dir=dist"
+    "images": "imagemin blocks/lookup/images/* --out-dir=dist",
+    "dev": "gulp developBlocks",
+    "build": "gulp buildBlocks"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.5.1",
     "lucide-preact": "^0.323.0",
-    "preact": "^10.19.3"
+    "preact": "^10.19.3",
+    "textfit": "^2.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.9",
