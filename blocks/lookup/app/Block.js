@@ -8,6 +8,7 @@ import Error from './Error';
 export default function Block({ admin }) {
   const [openCounty, setOpenCounty] = useState(null);
   const [data, setData] = useState(null);
+  console.log(data);
   const [error, setError] = useState(null);
   const county = data && openCounty ? data.records.filter(record => record.fields[data.settings.searchField] === openCounty)[0] : null;
   useEffect(() => {
