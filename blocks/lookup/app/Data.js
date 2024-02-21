@@ -12,7 +12,6 @@ export default function Data({ icon, value, label, bgColor, valueColor, labelCol
     if (ref.current) {
       const size = ref.current.getBoundingClientRect();
       ref.current.style.width = `${size.width}px`;
-      eight = `${size.height}px`;
       setSpanHeight(`${size.height}px`);
       textFit(ref.current, {
         maxFontSize: 100,

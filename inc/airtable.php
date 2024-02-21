@@ -16,10 +16,18 @@ function c4m_get_bases() {
   return $bases;
 }
 
-function c4m_get_tables() {
+function c4m_get_base_option() {
   $base_id = get_field('airtable_base', 'options');
   if (!$base_id) {
-    return 'must set base id';
+    return new WP_Error(422, 'Must set airtable base.');
+  }
+  return $base_id;
+}
+
+function c4m_get_tables() {
+  $base_id = c4m_get_base_option();
+  if (is_wp_error($base_id)) {
+    return $base_id;
   }
   $bases = call_airtable('/meta/bases/' . $base_id . '/tables');
   return $bases;
@@ -35,8 +43,14 @@ function c4m_get_table() {
 }
 
 function c4m_get_table_records() {
-  $base_id = get_field('airtable_base', 'options');
+  $base_id = c4m_get_base_option();
+  if (is_wp_error($base_id)) {
+    return $base_id;
+  }
   $table_id = get_field('table_id', 'options');
+  if (!$table_id) {
+    return new WP_Error('422', 'Must set airtable table.');
+  }
   $records = call_airtable('/' . $base_id . '/' . $table_id . '?returnFieldsByFieldId=true');
   return $records;
 }

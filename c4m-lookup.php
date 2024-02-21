@@ -2,7 +2,7 @@
 /*
   Plugin Name: Care4Mississippi Data Lookup
   Plugin URI: https://care4mississippi.org
-  Version: 0.0.1
+  Version: 0.0.2
   Author: Creative Distillery
   Author URI: https://creativedistillery.com
 */
@@ -139,6 +139,7 @@ include_once(plugin_dir_path( __FILE__ ) . 'inc/debugging.php');
 
 function set_base_options($field) {
 	$bases = c4m_get_bases();
+	$field['choices'][''] = '';
 	foreach($bases->bases as $base) {
 		$field['choices'][$base->id] = $base->name;
 	}
@@ -150,10 +151,13 @@ add_filter('acf/load_field/name=airtable_base', 'set_base_options');
 
 function set_table_options($field) {
 	$tables = c4m_get_tables();
-	if ($tables == 'must set base id') {
-		$field['choices'][''] = $tables;
+
+	if (is_wp_error($tables)) {
+		$field['choices'][''] = $tables->errors[422][0];
 		return $field;
 	}
+
+	$field['choices'][''] = '';
 	foreach($tables->tables as $table) {
 		$field['choices'][$table->id] = $table->name;
 	}
@@ -166,12 +170,23 @@ add_filter('acf/load_field/name=table_id', 'set_table_options');
 
 function c4m_set_column_options($field) {
 	$tables = c4m_get_tables();
-	
+	if (is_wp_error($tables)) {
+		$field['choices'][''] = $tables->errors[422][0];
+		return $field;
+	}
+
+	$table_id = get_field('table_id', 'options');
+	if (!$table_id) {
+		$field['choices'][''] = 'Must set airtable table.';
+		return $field;
+	}
+
 	$table = array_find($tables->tables, function($table) {
 		$table_id = get_field('table_id', 'options');
 		return $table->id == $table_id;
 	});
 
+	$field['choices'][''] = '';
 	foreach($table->fields as $tablefield) {
 		$field['choices'][$tablefield->id] = $tablefield->name;
 	}

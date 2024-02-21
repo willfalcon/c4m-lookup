@@ -3,18 +3,30 @@ import CountySearch from './CountySearch';
 import { useEffect, useState } from 'preact/hooks';
 import DataCard from './DataCard';
 import { Loader2 } from 'lucide-preact';
+import Error from './Error';
 
-export default function Block() {
+export default function Block({ admin }) {
   const [openCounty, setOpenCounty] = useState(null);
   const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
   const county = data && openCounty ? data.records.filter(record => record.fields[data.settings.searchField] === openCounty)[0] : null;
   useEffect(() => {
     async function fetchData() {
-      const fetchedData = await fetch('/wp-json/lookup/v1/data').then(res => res.json());
-      setData(fetchedData);
+      try {
+        const fetchedData = await fetch('/wp-json/lookup/v1/data').then(res => res.json());
+        if (fetchedData.code) {
+          setError(fetchedData);
+        } else {
+          setData(fetchedData);
+        }
+      } catch (e) {
+        console.error(e);
+        setError(e);
+      }
     }
     fetchData();
   }, []);
+
   return (
     <div class="border-2  rounded-xl border-black aspect-[3/2] flex flex-col overflow-hidden relative">
       {data ? (
@@ -32,6 +44,8 @@ export default function Block() {
             </div>
           )}
         </>
+      ) : error ? (
+        <Error {...error} admin={admin} />
       ) : (
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <Loader2 class="animate-spin w-12 h-12" color="white" />

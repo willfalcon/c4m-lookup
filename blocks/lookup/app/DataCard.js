@@ -8,18 +8,22 @@ export default function DataCard(props) {
   const { searchField, fields, careReduction, jobs, taxRevenue, setOpenCounty } = props;
 
   const county = fields[searchField];
-  const careReductionArr = fields[careReduction.airtable_column].split('.');
+  const careReductionCell = fields[careReduction.airtable_column];
+  const careReductionArr = careReductionCell ? careReductionCell.split('.') : '';
   if (careReductionArr > 1) {
     careReductionArr.pop();
   }
-  careReductionArr.pop();
-  const careReductionValue = careReductionArr.join('');
+  // careReductionArr.pop();
+  const careReductionValue = careReductionArr ? careReductionArr.join('') : '';
+
   const jobsValue = fields[jobs.airtable_column];
-  const taxRevenueArr = fields[taxRevenue.airtable_column].split('.');
+
+  const taxRevenueCell = fields[taxRevenue.airtable_column];
+  const taxRevenueArr = taxRevenueCell ? taxRevenueCell.split('.') : '';
   if (taxRevenueArr.length > 1) {
     taxRevenueArr.pop();
   }
-  const taxRevenueValue = taxRevenueArr.join('');
+  const taxRevenueValue = taxRevenueArr ? taxRevenueArr.join('') : '';
 
   const careReductionIcon = careReduction.icon_select;
   const jobsIcon = jobs.icon_select;
@@ -53,33 +57,39 @@ export default function DataCard(props) {
         <span class="block font-extrabold text-7xl">{county}</span> <span class="block font-bold text-4xl">County</span>
       </h3>
       <div class="grid grid-cols-3 gap-6 px-4 mt-9">
-        <Data
-          icon={careReductionIcon}
-          value={careReductionValue}
-          label="Reduction in Uncompensated Care"
-          bgColor="bg-c4m-blue-700"
-          valueColor="text-c4m-yellow-200"
-          labelColor="text-c4m-blue-100"
-          delay={0}
-        />
-        <Data
-          icon={jobsIcon}
-          value={jobsValue}
-          label="Jobs"
-          bgColor="bg-c4m-yellow-400"
-          valueColor="text-white"
-          labelColor="text-white"
-          delay={100}
-        />
-        <Data
-          icon={taxRevenueIcon}
-          value={taxRevenueValue}
-          label="Local Tax Revenue"
-          bgColor="bg-c4m-blue-100"
-          valueColor="text-c4m-blue-700"
-          labelColor="text-c4m-blue-700"
-          delay={200}
-        />
+        {careReductionValue && (
+          <Data
+            icon={careReductionIcon}
+            value={careReductionValue}
+            label="Reduction in Uncompensated Care"
+            bgColor="bg-c4m-blue-700"
+            valueColor="text-c4m-yellow-200"
+            labelColor="text-c4m-blue-100"
+            delay={0}
+          />
+        )}
+        {jobsValue && (
+          <Data
+            icon={jobsIcon}
+            value={jobsValue}
+            label="Jobs"
+            bgColor="bg-c4m-yellow-400"
+            valueColor="text-white"
+            labelColor="text-white"
+            delay={100}
+          />
+        )}
+        {taxRevenueValue && (
+          <Data
+            icon={taxRevenueIcon}
+            value={taxRevenueValue}
+            label="Local Tax Revenue"
+            bgColor="bg-c4m-blue-100"
+            valueColor="text-c4m-blue-700"
+            labelColor="text-c4m-blue-700"
+            delay={200}
+          />
+        )}
       </div>
     </div>
   );

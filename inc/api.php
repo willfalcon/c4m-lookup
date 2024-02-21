@@ -14,21 +14,29 @@ add_action( 'rest_api_init', function () {
 
 });
 
-
 function c4m_get_lookup_data() {
   $data = new stdClass();
+  
+  $records = c4m_get_table_records();
+  if (is_wp_error($records)) {
+    return $records;
+  }
+  $data->records = $records->records;
+
+  $search_field = get_field('search_field', 'options');
+  if (!$search_field) {
+    return new WP_Error(422, 'Must set search field.');
+  }
+  $data->settings = new stdClass();
+  $data->settings->searchField = $search_field;
+  
   $care_reduction = get_field('care_reduction', 'options');
   $jobs = get_field('jobs_field', 'options');
   $tax_revenue = get_field('tax_revenue', 'options');
 
-  $data->settings = new stdClass();
   $data->settings->careReduction = $care_reduction;
   $data->settings->jobs = $jobs;
   $data->settings->taxRevenue = $tax_revenue;
-  $data->settings->searchField = get_field('search_field', 'options');
-  $records = c4m_get_table_records();
-  
-  $data->records = $records->records;
 
   return $data;
   

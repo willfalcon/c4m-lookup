@@ -8,6 +8,10 @@
   if (array_key_exists('align', $block)) {
     $classes .= ' align' . $block['align'];
   }
+
+  if (current_user_can('manage_options')) {
+    $classes .= ' admin-caps';
+  }
 ?>
 
 <div class="<?php echo $classes; ?>">
