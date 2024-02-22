@@ -54,7 +54,8 @@ export default function DataCard(props) {
         alt={`${county} outline`}
       />
       <h3 class="text-center uppercase text-white">
-        <span class="block font-extrabold text-7xl">{county}</span> <span class="block font-bold text-4xl">County</span>
+        <span class="block font-extrabold text-3xl md:text-7xl">{county}</span>{' '}
+        <span class="block font-bold text-xl md:text-4xl">County</span>
       </h3>
       <div class="grid grid-cols-3 gap-6 px-4 mt-9">
         {careReductionValue && (

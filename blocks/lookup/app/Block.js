@@ -29,18 +29,18 @@ export default function Block({ admin }) {
   }, []);
 
   return (
-    <div class="border-2  rounded-xl border-black aspect-[3/2] flex flex-col overflow-hidden relative">
+    <div class="border-2  rounded-xl border-black aspect-square md:aspect-[3/2] flex flex-col overflow-hidden relative md:w-[550px] ml-auto mr-auto">
       {data ? (
         <>
-          <div class="p-4">
-            <h2 class="font-bold text-2xl text-center text-white">
+          <div class="p-3">
+            <h2 class="font-bold md:text-2xl text-center text-white">
               Look up how your local economy can see a boost by closing the health insurance coverage gap.
             </h2>
           </div>
           {county ? (
             <DataCard {...county} {...data.settings} setOpenCounty={setOpenCounty} />
           ) : (
-            <div class="p-4 flex-1">
+            <div class="p-3 pt-0 md:pt-3 flex-1">
               <CountySearch setOpenCounty={setOpenCounty} />
             </div>
           )}

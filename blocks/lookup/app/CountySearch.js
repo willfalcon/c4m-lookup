@@ -24,7 +24,7 @@ export default function CountySearch({ setOpenCounty }) {
   }
 
   return (
-    <div class="pt-12 pb-4 px-8 z-0">
+    <div class="p-4 pt-0 md:pt-12 md:px-8 z-0">
       <label htmlFor="location-search" class="text-center">
         Start typing your county name:
       </label>

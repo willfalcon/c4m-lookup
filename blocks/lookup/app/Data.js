@@ -43,7 +43,7 @@ export default function Data({ icon, value, label, bgColor, valueColor, labelCol
         >
           {value}
         </span>
-        <span class={classNames('block font-semibold w-[80%] mx-auto text-base', labelColor)}>{label}</span>
+        <span class={classNames('block font-semibold w-[80%] mx-auto text-sm md:text-base', labelColor)}>{label}</span>
       </div>
     </div>
   );

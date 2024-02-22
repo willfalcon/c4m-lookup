@@ -2,7 +2,7 @@
 /*
   Plugin Name: Care4Mississippi Data Lookup
   Plugin URI: https://care4mississippi.org
-  Version: 0.0.3
+  Version: 0.0.4
   Author: Creative Distillery
   Author URI: https://creativedistillery.com
 */

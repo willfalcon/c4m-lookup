@@ -1,10 +1,14 @@
 <?php
 
 function call_airtable($endpoint) {
+  $key = get_field('airtable_api_key', 'options');
+  if (!$key) {
+    return new WP_Error(422, 'Airtable Access Token Required.');
+  }
   $url = 'https://api.airtable.com/v0' . $endpoint;
   $response = wp_remote_get($url, array(
     'headers' => array(
-      'Authorization' => 'Bearer ' . get_field('airtable_api_key', 'options')
+      'Authorization' => 'Bearer ' . $key
     )
   ));
 
