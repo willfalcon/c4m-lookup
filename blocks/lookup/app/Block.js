@@ -29,7 +29,7 @@ export default function Block({ admin }) {
   }, []);
 
   return (
-    <div class="border-2  rounded-xl border-black aspect-square md:aspect-[3/2] flex flex-col overflow-hidden relative md:w-[550px] ml-auto mr-auto">
+    <div class="border-2  rounded-xl border-black aspect-square md:aspect-[3/2] flex flex-col overflow-hidden relative">
       {data ? (
         <>
           <div class="p-3">
