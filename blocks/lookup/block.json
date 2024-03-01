@@ -3,10 +3,10 @@
   "title": "Lookup",
   "style": "lookup-style",
   "editorStyle": "lookup-editor-style",
-  "viewScript": "lookup-script",
-  "category": "cdhq",
+  "script": "lookup-script",
+  "category": "cdhq", 
   "acf": {
-    "mode": "auto",
+    "mode": "preview",
     "renderTemplate": "lookup.php"
   },
   "supports": {
@@ -14,13 +14,5 @@
   },
   "align": "full",
   "icon": "image-filter",
-  "example": {
-    "attributes": {
-      "mode": "preview",
-      "data": {
-        "field_6455574cc315b": "14873",
-        "field_6500ad677de5a": "lookup"
-      }
-    }
-  }
+  "example": {}
 }
